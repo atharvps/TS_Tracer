@@ -1,12 +1,12 @@
 import "dotenv/config";
 import express from "express";
-import { corsHandler }  from "./middleware/corsHandler.js";
+import { corsHandler } from "./middleware/corsHandler.js";
 import { errorHandler } from "./middleware/errorHandler.js";
-import chatRouter       from "./routes/chat.route.js";
+import chatRouter from "./routes/chat.route.js";
 
 import path from "path";
 
-const app  = express();
+const app = express();
 const PORT = process.env.PORT || 5000;
 
 // ── Middleware ───────────────────────────────────────────────
@@ -163,7 +163,7 @@ app.get("/privacy", (_req, res) => {
       </li>
       <li>
         <strong>Gemini API Key</strong> — Your personal Gemini API key is stored
-        exclusively in your browser's local storage (<code>chrome.storage.local</code>)
+        exclusively in your browser's local storage
         and is never transmitted to or stored on our servers. It is sent directly in
         request headers to authenticate with the Gemini API.
       </li>
@@ -190,8 +190,7 @@ app.get("/privacy", (_req, res) => {
     <h2>Data Storage</h2>
     <p>
       All persistent data — including your Gemini API key, chat history, and user
-      preferences — is stored locally in your browser using
-      <code>chrome.storage.local</code>. This data never leaves your device unless
+      preferences — is stored locally in your browser. This data never leaves your device unless
       explicitly included in an API request (i.e., your chat messages sent to Gemini).
     </p>
     <p>
