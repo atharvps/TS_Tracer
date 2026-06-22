@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: ts-tracer-proxy
+    runtime: node
+    plan: free
+    region: oregon
+    # Render runs commands from the repo root, so we cd into server/
+    buildCommand: cd server && npm install && npm run build
+    startCommand: cd server && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      # Add your specific extension ID here after publishing to Chrome Web Store
+      # - key: ALLOWED_EXTENSION_ID
+      #   value: your_extension_id_here

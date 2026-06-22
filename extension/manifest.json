@@ -1,0 +1,51 @@
+{
+  "manifest_version": 3,
+  "name": "TS_Tracer — AI Complexity Coach",
+  "version": "1.0.0",
+  "description": "Your personal FAANG interviewer and AI pair programmer for LeetCode. Powered by Gemini.",
+
+  "permissions": [
+    "storage",
+    "activeTab",
+    "tabs",
+    "sidePanel"
+  ],
+
+  "host_permissions": [
+    "https://leetcode.com/*",
+    "http://localhost:5000/*",
+    "https://ts-tracer-proxy.onrender.com/*"
+  ],
+
+  "background": {
+    "service_worker": "src/background/background.ts",
+    "type": "module"
+  },
+
+  "action": {
+    "default_icon": {
+      "16": "icons/16.png",
+      "48": "icons/48.png",
+      "128": "icons/128.png"
+    },
+    "default_title": "Open TS_Tracer"
+  },
+
+  "side_panel": {
+    "default_path": "src/sidepanel/sidepanel.html"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["https://leetcode.com/problems/*"],
+      "js": ["src/content/content.ts"],
+      "run_at": "document_idle"
+    }
+  ],
+
+  "icons": {
+    "16": "icons/16.png",
+    "48": "icons/48.png",
+    "128": "icons/128.png"
+  }
+}
