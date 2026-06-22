@@ -220,8 +220,17 @@ function ChatUI({ apiKey, onClearKey }: { apiKey: string; onClearKey: () => void
           <div className="flex items-center gap-2">
             <ThemeToggle />
 
-            {/* Settings menu */}
-            <div className="relative flex items-center justify-center" style={{ width: "28px", height: "28px" }} ref={menuRef}>
+            {/* Settings gear — wrapper is FIXED 28×28 so opening the dropdown
+                never causes a layout reflow that shifts sibling elements.      */}
+            <div
+              ref={menuRef}
+              style={{
+                position: "relative",
+                width: "28px",
+                height: "28px",
+                flexShrink: 0,   /* never let flex compress this */
+              }}
+            >
               <button
                 onClick={() => setShowMenu(!showMenu)}
                 title="Settings"
@@ -245,8 +254,17 @@ function ChatUI({ apiKey, onClearKey }: { apiKey: string; onClearKey: () => void
 
               {showMenu && (
                 <div
-                  className="absolute top-full mt-2 glass-2 rounded-card shadow-glass animate-fade-up z-50"
-                  style={{ width: "140px", maxWidth: "100%", padding: "4px", right: 0 }}
+                  className="animate-fade-up glass-2 rounded-card shadow-glass"
+                  style={{
+                    position: "absolute",
+                    top: "calc(100% + 6px)",
+                    right: 0,
+                    width: "144px",   /* tight fit for short labels */
+                    padding: "4px",
+                    zIndex: 9999,
+                    /* Hard-stop at viewport edge — never overflows right */
+                    maxWidth: "calc(100vw - 20px)",
+                  }}
                 >
                   <MenuItem
                     icon="🗑"
@@ -255,7 +273,7 @@ function ChatUI({ apiKey, onClearKey }: { apiKey: string; onClearKey: () => void
                   />
                   <MenuItem
                     icon="🔑"
-                    label="Change API"
+                    label="Change API Key"
                     onClick={() => { onClearKey(); setShowMenu(false); }}
                     danger
                   />
