@@ -59,8 +59,8 @@ export const DEFAULT_PREFS: UserPrefs = {
   theme: "dark",
   // gemini-1.5-flash: free tier = 15 RPM, 1 M TPM, 1500 RPD
   // gemini-2.0-flash: free tier limit is 0 for new projects → always 429
-  model: "gemini-1.5-flash",
-  proxyUrl: "http://localhost:5000",
+  model: "gemini-3.1-flash",
+  proxyUrl: "https://ts-tracer-proxy.onrender.com",
 };
 
 // ── Message types for chrome.runtime.sendMessage ─────────────

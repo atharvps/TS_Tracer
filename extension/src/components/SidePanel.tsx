@@ -5,26 +5,26 @@
  */
 
 import { useState, useEffect, useRef } from "react";
-import { useApiKey }    from "@hooks/useApiKey.ts";
-import { useLeetCode }  from "@hooks/useLeetCode.ts";
-import { useChat }      from "@hooks/useChat.ts";
+import { useApiKey } from "@hooks/useApiKey.ts";
+import { useLeetCode } from "@hooks/useLeetCode.ts";
+import { useChat } from "@hooks/useChat.ts";
 import { UserPrefs, DEFAULT_PREFS } from "@types-ext/storage.ts";
-import { ModeToggle }       from "./ModeToggle.tsx";
-import { ProblemHeader }    from "./ProblemHeader.tsx";
-import { QuickActions }     from "./QuickActions.tsx";
-import { ChatMessage }      from "./ChatMessage.tsx";
-import { ChatInput }        from "./ChatInput.tsx";
-import { TypingIndicator }  from "./TypingIndicator.tsx";
+import { ModeToggle } from "./ModeToggle.tsx";
+import { ProblemHeader } from "./ProblemHeader.tsx";
+import { QuickActions } from "./QuickActions.tsx";
+import { ChatMessage } from "./ChatMessage.tsx";
+import { ChatInput } from "./ChatInput.tsx";
+import { TypingIndicator } from "./TypingIndicator.tsx";
 import { ThemeProvider, useTheme } from "./ThemeContext.tsx";
-import { ThemeToggle }      from "./ThemeToggle.tsx";
+import { ThemeToggle } from "./ThemeToggle.tsx";
 
 // ══════════════════════════════════════════════════════════════
 // Onboarding Screen
 // ══════════════════════════════════════════════════════════════
 
 function OnboardingScreen({ onSave }: { onSave: (key: string) => Promise<boolean> }) {
-  const [input,  setInput]  = useState("");
-  const [error,  setError]  = useState("");
+  const [input, setInput] = useState("");
+  const [error, setError] = useState("");
   const [saving, setSaving] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -45,10 +45,10 @@ function OnboardingScreen({ onSave }: { onSave: (key: string) => Promise<boolean
     >
       {/* Logo */}
       <div className="mb-8 text-center">
-        <img 
-          src="/logo.png" 
-          alt="TS_Tracer Logo" 
-          className="w-20 h-20 mx-auto mb-4 animate-glow-pulse object-contain drop-shadow-lg" 
+        <img
+          src="/logo.png"
+          alt="TS_Tracer Logo"
+          className="w-20 h-20 mx-auto mb-4 animate-glow-pulse object-contain drop-shadow-lg"
         />
         <h1
           className="text-xl font-bold"
@@ -134,10 +134,10 @@ function OnboardingScreen({ onSave }: { onSave: (key: string) => Promise<boolean
 
 function ChatUI({ apiKey, onClearKey }: { apiKey: string; onClearKey: () => void }) {
   const { context, isLoading: ctxLoading, refresh } = useLeetCode();
-  const [prefs,      setPrefs]      = useState<UserPrefs>(DEFAULT_PREFS);
-  const [showMenu,   setShowMenu]   = useState(false);
-  const messagesEndRef               = useRef<HTMLDivElement>(null);
-  const menuRef                      = useRef<HTMLDivElement>(null);
+  const [prefs, setPrefs] = useState<UserPrefs>(DEFAULT_PREFS);
+  const [showMenu, setShowMenu] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   // Load prefs
   useEffect(() => {
@@ -186,9 +186,9 @@ function ChatUI({ apiKey, onClearKey }: { apiKey: string; onClearKey: () => void
         <div className="flex items-center justify-between">
           {/* Brand */}
           <div className="flex items-center gap-2">
-            <img 
-              src="/logo.png" 
-              alt="TS_Tracer Logo" 
+            <img
+              src="/logo.png"
+              alt="TS_Tracer Logo"
               className="w-7 h-7 object-contain drop-shadow-md"
             />
             <div>
@@ -206,9 +206,9 @@ function ChatUI({ apiKey, onClearKey }: { apiKey: string; onClearKey: () => void
               <span
                 className="ml-1.5 text-[9px] px-1.5 py-0.5 rounded"
                 style={{
-                  color:      "var(--teal)",
+                  color: "var(--teal)",
                   background: "var(--teal-dim)",
-                  border:     "1px solid var(--border-glass)",
+                  border: "1px solid var(--border-glass)",
                 }}
               >
                 v1.0
@@ -226,18 +226,18 @@ function ChatUI({ apiKey, onClearKey }: { apiKey: string; onClearKey: () => void
                 onClick={() => setShowMenu(!showMenu)}
                 title="Settings"
                 style={{
-                  width:        "28px",
-                  height:       "28px",
+                  width: "28px",
+                  height: "28px",
                   borderRadius: "8px",
-                  display:      "flex",
-                  alignItems:   "center",
+                  display: "flex",
+                  alignItems: "center",
                   justifyContent: "center",
-                  background:   showMenu ? "var(--teal-dim)" : "var(--surface-3)",
-                  border:       `1px solid ${showMenu ? "var(--border-accent)" : "var(--border-glass)"}`,
-                  color:        showMenu ? "var(--teal)" : "var(--ink-muted)",
-                  fontSize:     "14px",
-                  cursor:       "pointer",
-                  transition:   "all 0.15s ease",
+                  background: showMenu ? "var(--teal-dim)" : "var(--surface-3)",
+                  border: `1px solid ${showMenu ? "var(--border-accent)" : "var(--border-glass)"}`,
+                  color: showMenu ? "var(--teal)" : "var(--ink-muted)",
+                  fontSize: "14px",
+                  cursor: "pointer",
+                  transition: "all 0.15s ease",
                 }}
               >
                 ⚙
@@ -246,7 +246,7 @@ function ChatUI({ apiKey, onClearKey }: { apiKey: string; onClearKey: () => void
               {showMenu && (
                 <div
                   className="absolute top-full mt-2 glass-2 rounded-card shadow-glass animate-fade-up z-50"
-                  style={{ minWidth: "170px", padding: "4px", right: 0 }}
+                  style={{ width: "140px", maxWidth: "100%", padding: "4px", right: 0 }}
                 >
                   <MenuItem
                     icon="🗑"
@@ -255,7 +255,7 @@ function ChatUI({ apiKey, onClearKey }: { apiKey: string; onClearKey: () => void
                   />
                   <MenuItem
                     icon="🔑"
-                    label="Change API key"
+                    label="Change API"
                     onClick={() => { onClearKey(); setShowMenu(false); }}
                     danger
                   />
@@ -287,9 +287,9 @@ function ChatUI({ apiKey, onClearKey }: { apiKey: string; onClearKey: () => void
           <div
             className="flex flex-col items-center justify-center h-full text-center px-6 py-10 animate-fade-up bg-transparent"
           >
-            <img 
-              src="/logo.png" 
-              alt="Mode Logo" 
+            <img
+              src="/logo.png"
+              alt="Mode Logo"
               className="w-16 h-16 object-contain mb-4 drop-shadow-md"
             />
             <p
@@ -311,9 +311,9 @@ function ChatUI({ apiKey, onClearKey }: { apiKey: string; onClearKey: () => void
               <div
                 className="mt-5 px-3 py-2 rounded-card text-xs"
                 style={{
-                  background:  "rgba(245,158,11,0.08)",
-                  border:      "1px solid rgba(245,158,11,0.25)",
-                  color:       "#f59e0b",
+                  background: "rgba(245,158,11,0.08)",
+                  border: "1px solid rgba(245,158,11,0.25)",
+                  color: "#f59e0b",
                 }}
               >
                 Navigate to a LeetCode problem first
@@ -336,8 +336,8 @@ function ChatUI({ apiKey, onClearKey }: { apiKey: string; onClearKey: () => void
             className="mx-3 my-1 px-3 py-2 rounded-card text-xs animate-fade-up"
             style={{
               background: "rgba(239,68,68,0.08)",
-              border:     "1px solid rgba(239,68,68,0.25)",
-              color:      "#f87171",
+              border: "1px solid rgba(239,68,68,0.25)",
+              color: "#f87171",
             }}
           >
             ⚠ {error}
@@ -363,8 +363,8 @@ function ChatUI({ apiKey, onClearKey }: { apiKey: string; onClearKey: () => void
             !context
               ? "Open a LeetCode problem first…"
               : prefs.isSocraticMode
-              ? "Ask your interviewer…"
-              : "Ask your copilot…"
+                ? "Ask your interviewer…"
+                : "Ask your copilot…"
           }
         />
       </div>
@@ -375,8 +375,8 @@ function ChatUI({ apiKey, onClearKey }: { apiKey: string; onClearKey: () => void
 function MenuItem({
   icon, label, onClick, danger,
 }: {
-  icon:    string;
-  label:   string;
+  icon: string;
+  label: string;
   onClick: () => void;
   danger?: boolean;
 }) {
@@ -384,30 +384,30 @@ function MenuItem({
     <button
       onClick={onClick}
       style={{
-        width:        "100%",
-        textAlign:    "left",
-        display:      "flex",
-        alignItems:   "center",
-        gap:          "8px",
-        padding:      "7px 10px",
+        width: "100%",
+        textAlign: "left",
+        display: "flex",
+        alignItems: "center",
+        gap: "8px",
+        padding: "7px 10px",
         borderRadius: "8px",
-        fontSize:     "12px",
-        fontWeight:   "500",
-        color:        danger ? "#f87171" : "var(--ink-secondary)",
-        background:   "transparent",
-        border:       "none",
-        cursor:       "pointer",
-        transition:   "all 0.15s ease",
+        fontSize: "12px",
+        fontWeight: "500",
+        color: danger ? "#f87171" : "var(--ink-secondary)",
+        background: "transparent",
+        border: "none",
+        cursor: "pointer",
+        transition: "all 0.15s ease",
       }}
       onMouseEnter={(e) => {
         const el = e.currentTarget;
         el.style.background = danger ? "rgba(239,68,68,0.1)" : "var(--surface-hover)";
-        el.style.color      = danger ? "#ef4444" : "var(--ink-primary)";
+        el.style.color = danger ? "#ef4444" : "var(--ink-primary)";
       }}
       onMouseLeave={(e) => {
         const el = e.currentTarget;
         el.style.background = "transparent";
-        el.style.color      = danger ? "#f87171" : "var(--ink-secondary)";
+        el.style.color = danger ? "#f87171" : "var(--ink-secondary)";
       }}
     >
       <span>{icon}</span>
@@ -428,7 +428,7 @@ function LoadingScreen() {
           className="w-8 h-8 rounded-btn animate-spin-slow"
           style={{
             background: "linear-gradient(135deg, var(--teal), var(--emerald))",
-            mask:       "radial-gradient(circle, transparent 55%, black 55%)",
+            mask: "radial-gradient(circle, transparent 55%, black 55%)",
             WebkitMask: "radial-gradient(circle, transparent 55%, black 55%)",
           }}
         />
@@ -450,8 +450,8 @@ function LoadingScreen() {
 function SidePanelInner() {
   const { apiKey, isLoading, isOnboarded, saveKey, clearKey } = useApiKey();
 
-  if (isLoading)                  return <LoadingScreen />;
-  if (!isOnboarded || !apiKey)    return <OnboardingScreen onSave={saveKey} />;
+  if (isLoading) return <LoadingScreen />;
+  if (!isOnboarded || !apiKey) return <OnboardingScreen onSave={saveKey} />;
   return <ChatUI apiKey={apiKey} onClearKey={clearKey} />;
 }
 

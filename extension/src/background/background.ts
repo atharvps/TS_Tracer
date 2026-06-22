@@ -36,7 +36,7 @@ const DEFAULT_PREFS = {
   isSocraticMode: true,
   theme:          "dark",
   model:          "gemini-1.5-flash", // free tier: 15 RPM, 1500 RPD
-  proxyUrl:       "http://localhost:5000",
+  proxyUrl:       "https://ts-tracer-proxy.onrender.com",
 };
 
 // ── Type-safe storage helpers ─────────────────────────────────
