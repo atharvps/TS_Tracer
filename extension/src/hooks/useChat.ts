@@ -247,7 +247,7 @@ export function useChat({ context, prefs, apiKey }: UseChatProps) {
         content: m.content,
       }));
 
-      const proxyUrl = prefs.proxyUrl || "http://localhost:5000";
+      const proxyUrl = prefs.proxyUrl || "https://ts-tracer-proxy.onrender.com";
       console.log(LOG, `Fetching from ${proxyUrl}/api/chat for slug: ${context.slug}`);
 
       // BUG-18 FIX: Create an AbortController for this request
