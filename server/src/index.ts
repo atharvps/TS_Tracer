@@ -4,12 +4,19 @@ import { corsHandler }  from "./middleware/corsHandler.js";
 import { errorHandler } from "./middleware/errorHandler.js";
 import chatRouter       from "./routes/chat.route.js";
 
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const app  = express();
 const PORT = process.env.PORT || 5000;
 
 // ── Middleware ───────────────────────────────────────────────
 app.use(corsHandler);
 app.use(express.json({ limit: "1mb" }));
+app.use("/public", express.static(path.join(__dirname, "../../public")));
 
 // ── Routes ───────────────────────────────────────────────────
 
@@ -128,7 +135,9 @@ app.get("/privacy", (_req, res) => {
   <div class="container">
 
     <div class="brand">
-      <div class="brand-icon">⚡</div>
+      <div class="brand-icon">
+        <img src="/public/icons/48.png" alt="TS Tracer Logo" style="width: 24px; height: 24px; object-fit: contain;" />
+      </div>
       <span class="brand-name">TS_Tracer</span>
     </div>
 
